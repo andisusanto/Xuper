@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems StartupNavigationItem="XuperACC.Module.Item_ListView" />
+  <Options UIType="TabbedMDI" FormStyle="Ribbon" />
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="13.1.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="13.1.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="13.1.4.0" IsNewNode="True" />
+  </SchemaModules>
+</Application>
