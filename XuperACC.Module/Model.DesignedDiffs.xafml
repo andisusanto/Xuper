@@ -51,7 +51,7 @@
           <Item Id="OtherExpense_ListView" ViewId="OtherExpense_ListView" ObjectKey="" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="Master" Index="1" IsNewNode="True">
+      <Item Id="Master" Index="1" ChildItemsDisplayStyle="List" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="Item_ListView" ViewId="Item_ListView" ObjectKey="" Index="0" IsNewNode="True" />
           <Item Id="Category_ListView" ViewId="Category_ListView" ObjectKey="" Index="1" IsNewNode="True" />
@@ -60,7 +60,8 @@
           <Item Id="Inventory_ListView" ViewId="Inventory_ListView" ObjectKey="" Index="4" IsNewNode="True" />
           <Item Id="Salesman_ListView" ViewId="Salesman_ListView" ObjectKey="" Index="5" IsNewNode="True" />
           <Item Id="Unit_ListView" ViewId="Unit_ListView" ObjectKey="" Index="6" IsNewNode="True" />
-          <Item Id="OtherExpenseItem_ListView" ViewId="OtherExpenseItem_ListView" ObjectKey="" IsNewNode="True" />
+          <Item Id="Location_ListView" ViewId="Location_ListView" ObjectKey="" Index="7" IsNewNode="True" />
+          <Item Id="OtherExpenseItem_ListView" ViewId="OtherExpenseItem_ListView" ObjectKey="" Index="8" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="System" Index="2" ChildItemsDisplayStyle="List" IsNewNode="True">
@@ -101,6 +102,7 @@
           <Item Id="Inventory_ListView" Removed="True" />
           <Item Id="InventoryItemAdjustment_ListView" Removed="True" />
           <Item Id="Item_ListView" Removed="True" />
+          <Item Id="Location_ListView" Removed="True" />
           <Item Id="OtherExpense_ListView" Removed="True" />
           <Item Id="OtherExpenseItem_ListView" Removed="True" />
           <Item Id="PurchaseInvoice_ListView" Removed="True" />
@@ -125,4 +127,109 @@
     <SchemaModule Name="CloneObjectModule" Version="14.1.8.0" IsNewNode="True" />
     <SchemaModule Name="SystemModule" Version="14.1.8.0" IsNewNode="True" />
   </SchemaModules>
+  <Views>
+    <DetailView Id="PurchaseInvoiceDetail_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="PurchaseInvoiceDetail" RelativeSize="100" Direction="Vertical">
+              <LayoutGroup Id="PurchaseInvoiceDetail_col1" RelativeSize="100">
+                <LayoutItem Id="Item" SizeConstraintsType="Default" RelativeSize="4.5133991537376588" Index="0" />
+                <LayoutItem Id="UnitPrice" ViewItem="UnitPrice" SizeConstraintsType="Default" Index="1" RelativeSize="3.3850493653032441" IsNewNode="True" />
+                <LayoutItem Id="Quantity" SizeConstraintsType="Default" RelativeSize="3.3850493653032441" Index="2" />
+                <LayoutItem Id="Total" ViewItem="Total" SizeConstraintsType="Default" Index="3" RelativeSize="88.716502115655857" IsNewNode="True" />
+                <LayoutItem Id="PaidQuantity" Removed="True" />
+                <LayoutItem Id="Sequence" SizeConstraintsType="Default" RelativeSize="7.06401766004415" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="PurchaseInvoiceDetail_col2" RelativeSize="50" Caption="PurchaseInvoiceDetail_col2" Direction="Horizontal" Removed="True">
+                <LayoutItem Id="PaymentOutstandingQuantity" Removed="True" />
+                <LayoutItem Id="ReturnedQuantity" Removed="True" />
+                <LayoutItem Id="Total" Removed="True" />
+                <LayoutItem Id="UnitPrice" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="PurchasePaymentDetail_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="PurchasePaymentDetail" RelativeSize="100">
+              <LayoutItem Id="PurchaseInvoiceDetail" SizeConstraintsType="Default" Index="0" RelativeSize="4.2666666666666666" />
+              <LayoutItem Id="Quantity" SizeConstraintsType="Default" Index="1" RelativeSize="3.2" />
+              <LayoutItem Id="Total" SizeConstraintsType="Default" Index="2" RelativeSize="92.533333333333331" />
+              <LayoutItem Id="Sequence" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="PurchaseReturnDetail_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="PurchaseReturnDetail" RelativeSize="100">
+              <LayoutItem Id="PurchaseInvoiceDetail" SizeConstraintsType="Default" Index="0" RelativeSize="4.2666666666666666" />
+              <LayoutItem Id="Quantity" SizeConstraintsType="Default" Index="1" RelativeSize="3.2" />
+              <LayoutItem Id="Total" SizeConstraintsType="Default" Index="2" RelativeSize="92.533333333333331" />
+              <LayoutItem Id="Sequence" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SalesInvoiceBonusItem_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="SalesInvoiceBonusItem" RelativeSize="100">
+              <LayoutItem Id="Item" SizeConstraintsType="Default" Index="0" RelativeSize="4.2666666666666666" />
+              <LayoutItem Id="Quantity" SizeConstraintsType="Default" Index="1" RelativeSize="95.733333333333334" />
+              <LayoutItem Id="Sequence" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SalesInvoiceDetail_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="SalesInvoiceDetail" RelativeSize="100" Direction="Vertical">
+              <LayoutGroup Id="SalesInvoiceDetail_col1" RelativeSize="100">
+                <LayoutItem Id="Item" SizeConstraintsType="Default" RelativeSize="4.5133991537376588" Index="0" />
+                <LayoutItem Id="UnitPrice" ViewItem="UnitPrice" SizeConstraintsType="Default" Index="1" RelativeSize="3.3850493653032441" IsNewNode="True" />
+                <LayoutItem Id="Quantity" SizeConstraintsType="Default" RelativeSize="3.3850493653032441" Index="2" />
+                <LayoutItem Id="Total" ViewItem="Total" SizeConstraintsType="Default" Index="3" RelativeSize="88.716502115655857" IsNewNode="True" />
+                <LayoutItem Id="PaidQuantity" SizeConstraintsType="Default" RelativeSize="88.716502115655857" Removed="True" />
+                <LayoutItem Id="Sequence" SizeConstraintsType="Default" RelativeSize="7.06401766004415" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="SalesInvoiceDetail_col2" RelativeSize="50" Caption="SalesInvoiceDetail_col2" Direction="Horizontal" Removed="True">
+                <LayoutItem Id="PaymentOutstandingQuantity" Removed="True" />
+                <LayoutItem Id="ReturnedQuantity" Removed="True" />
+                <LayoutItem Id="Total" Removed="True" />
+                <LayoutItem Id="UnitPrice" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SalesPaymentDetail_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="SalesPaymentDetail" RelativeSize="100">
+              <LayoutItem Id="SalesInvoiceDetail" SizeConstraintsType="Default" Index="0" RelativeSize="4.2666666666666666" />
+              <LayoutItem Id="Quantity" SizeConstraintsType="Default" Index="1" RelativeSize="3.2" />
+              <LayoutItem Id="Total" SizeConstraintsType="Default" Index="2" RelativeSize="92.533333333333331" />
+              <LayoutItem Id="Sequence" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
 </Application>

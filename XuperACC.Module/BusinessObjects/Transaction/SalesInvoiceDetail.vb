@@ -78,6 +78,9 @@ Public Class SalesInvoiceDetail
         End Get
         Set(ByVal value As Item)
             SetPropertyValue("Item", _item, value)
+            If Not IsLoading Then
+                UnitPrice = Item.DefaultPrice
+            End If
         End Set
     End Property
     Public Property Quantity As Integer
