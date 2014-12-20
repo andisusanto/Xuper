@@ -29,6 +29,8 @@ Public Class Customer
     Private fCode As String
     Private fName As String
     Private fLocation As Location
+    Private fContactNumber As String
+    Private fContactPerson As String
     Private fActive As Boolean
     <RuleRequiredField("Rule Required for Customer.Code", DefaultContexts.Save)>
     <RuleUniqueValue("Rule Unique for Customer.Code", DefaultContexts.Save)>
@@ -56,6 +58,22 @@ Public Class Customer
         End Get
         Set(value As Location)
             SetPropertyValue("Location", fLocation, value)
+        End Set
+    End Property
+    Public Property ContactPerson As String
+        Get
+            Return fContactPerson
+        End Get
+        Set(value As String)
+            SetPropertyValue("ContactPerson", fContactPerson, value)
+        End Set
+    End Property
+    Public Property ContactNumber As String
+        Get
+            Return fContactNumber
+        End Get
+        Set(value As String)
+            SetPropertyValue("ContactNumber", fContactNumber, value)
         End Set
     End Property
     Public Property Active As Boolean

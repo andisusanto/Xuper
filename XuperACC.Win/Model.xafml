@@ -1,10 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application>
-  <NavigationItems StartupNavigationItem="XuperACC.Module.Item_ListView" />
+  <NavigationItems StartupNavigationItem="Item_ListView" />
   <Options UIType="TabbedMDI" FormStyle="Ribbon" />
   <SchemaModules>
-    <SchemaModule Name="CloneObjectModule" Version="13.1.4.0" IsNewNode="True" />
-    <SchemaModule Name="SystemModule" Version="13.1.4.0" IsNewNode="True" />
-    <SchemaModule Name="SystemWindowsFormsModule" Version="13.1.4.0" IsNewNode="True" />
+    <SchemaModule Name="CloneObjectModule" Version="14.1.8.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="14.1.8.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="14.1.8.0" IsNewNode="True" />
   </SchemaModules>
+  <Views>
+    <DetailView Id="Supplier_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="25.760649087221097">
+            <LayoutGroup Id="Supplier" RelativeSize="100">
+              <LayoutGroup Id="Supplier_col1" RelativeSize="49.916805324459233">
+                <LayoutItem Id="Code" SizeConstraintsType="Default" RelativeSize="36.363636363636367" />
+                <LayoutItem Id="Name" SizeConstraintsType="Default" RelativeSize="63.636363636363633" />
+                <LayoutItem Id="ContactPerson" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Supplier_col2" RelativeSize="50.083194675540767">
+                <LayoutItem Id="ContactPerson" ViewItem="ContactPerson" SizeConstraintsType="Default" Index="0" RelativeSize="36.363636363636367" IsNewNode="True" />
+                <LayoutItem Id="ContactNumber" SizeConstraintsType="Default" Index="1" RelativeSize="27.272727272727273" />
+                <LayoutItem Id="Active" SizeConstraintsType="Default" Index="2" RelativeSize="36.363636363636367" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="DebitNotes_Group" Direction="Vertical" RelativeSize="74.2393509127789">
+            <LayoutItem Id="DebitNotes" SizeConstraintsType="Default" RelativeSize="100" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
 </Application>

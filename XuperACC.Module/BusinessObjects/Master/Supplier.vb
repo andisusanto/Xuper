@@ -28,6 +28,8 @@ Public Class Supplier
 
     Private fCode As String
     Private fName As String
+    Private fContactNumber As String
+    Private fContactPerson As String
     Private fActive As Boolean
     <RuleRequiredField("Rule Required for Supplier.Code", DefaultContexts.Save)>
     <RuleUniqueValue("Rule Unique for Supplier.Code", DefaultContexts.Save)>
@@ -46,6 +48,22 @@ Public Class Supplier
         End Get
         Set(ByVal value As String)
             SetPropertyValue("Name", fName, value)
+        End Set
+    End Property
+    Public Property ContactPerson As String
+        Get
+            Return fContactPerson
+        End Get
+        Set(value As String)
+            SetPropertyValue("ContactPerson", fContactPerson, value)
+        End Set
+    End Property
+    Public Property ContactNumber As String
+        Get
+            Return fContactNumber
+        End Get
+        Set(value As String)
+            SetPropertyValue("ContactNumber", fContactNumber, value)
         End Set
     End Property
     Public Property Active As Boolean
