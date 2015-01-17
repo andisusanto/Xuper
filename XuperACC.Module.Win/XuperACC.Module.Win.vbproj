@@ -122,6 +122,8 @@
     <Reference Include="DevExpress.XtraNavBar.v14.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraReports.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v14.1.Extensions, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Report.Module, Version=1.0.5384.29923, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\Report.Module.dll</HintPath>
@@ -161,6 +163,12 @@
     <Import Include="System.Diagnostics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ViewController\PrintInvoiceController.Designer.vb">
+      <DependentUpon>PrintInvoiceController.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ViewController\PrintInvoiceController.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\ViewController\SuppressTransactionBaseConfirmation.Designer.vb">
       <DependentUpon>SuppressTransactionBaseConfirmation.vb</DependentUpon>
     </Compile>
@@ -196,6 +204,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controllers\ViewController\PrintInvoiceController.resx">
+      <DependentUpon>PrintInvoiceController.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controllers\WindowController\ShowCustomFormWindowController.resx">
       <DependentUpon>ShowCustomFormWindowController.vb</DependentUpon>
     </EmbeddedResource>

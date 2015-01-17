@@ -10,6 +10,8 @@ Public Class InventoryServices
 
         For Each obj In xpInventoryDeductTransaction
             obj.ResetDetail()
+        Next
+        For Each obj In xpInventoryDeductTransaction
             obj.DistributeDeduction()
         Next
         Return objInventoryItem
@@ -21,6 +23,8 @@ Public Class InventoryServices
         InventoryItem.Delete()
         For Each obj In xpInventoryDeductTransaction
             obj.ResetDetail()
+        Next
+        For Each obj In xpInventoryDeductTransaction
             obj.DistributeDeduction()
         Next
     End Sub
@@ -46,6 +50,8 @@ Public Class InventoryServices
         InventoryDeductTransaction.Delete()
         For Each obj In xpInventoryDeductTransaction
             obj.ResetDetail()
+        Next
+        For Each obj In xpInventoryDeductTransaction
             obj.DistributeDeduction()
         Next
     End Sub
