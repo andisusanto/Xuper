@@ -17,7 +17,7 @@ Imports DevExpress.ExpressApp.ConditionalAppearance
 <RuleCriteria("Rule Criteria for Cancel SalesInvoice.PaymentOutstandingStatus", "Cancel", "PaymentOutstandingStatus = 'Full'")>
 <RuleCriteria("Rule Criteria for Cancel SalesInvoice.ReturnOutstandingStatus", "Cancel", "ReturnOutstandingStatus = 'Full'")>
 <RuleCriteria("Rule Criteria for SalesInvoice.Total > 0", DefaultContexts.Save, "Total > 0")>
-<Appearance("Appearance Default Disabled for SalesPayment", enabled:=False, AppearanceItemType:="ViewItem", targetitems:="Total, PaymentOutstandingStatus")>
+<Appearance("Appearance Default Disabled for SalesPayment", enabled:=False, AppearanceItemType:="ViewItem", targetitems:="Total, Discount, GrandTotal, PaymentOutstandingStatus")>
 <DeferredDeletion(False)>
 <DefaultClassOptions()> _
 Public Class SalesInvoice
@@ -36,6 +36,10 @@ Public Class SalesInvoice
     Private _customer As Customer
     Private _inventory As Inventory
     Private _total As Double
+    Private _discountType As DiscountType
+    Private _discountValue As Double
+    Private _discount As Double
+    Private _grandTotal As Double
     Private _salesman As Salesman
     Private _paymentOutstandingStatus As OutstandingStatus
     Private _returnOutstandingStatus As OutstandingStatus
@@ -76,12 +80,61 @@ Public Class SalesInvoice
             SetPropertyValue("Inventory", _inventory, value)
         End Set
     End Property
+    <ImmediatePostData(True)>
     Public Property Total As Double
         Get
             Return _total
         End Get
         Set(ByVal value As Double)
             SetPropertyValue("Total", _total, value)
+            If Not IsLoading Then
+                CalculateDiscount()
+            End If
+        End Set
+    End Property
+    <ImmediatePostData(True)>
+    Public Property DiscountType As DiscountType
+        Get
+            Return _discountType
+        End Get
+        Set(ByVal value As DiscountType)
+            SetPropertyValue("DiscountType", _discountType, value)
+            If Not IsLoading Then
+                CalculateDiscount()
+            End If
+        End Set
+    End Property
+    <ImmediatePostData(True)>
+    <RuleRange(0, 100, targetcriteria:="DiscountType = 'ByPercentage'")>
+    Public Property DiscountValue As Double
+        Get
+            Return _discountValue
+        End Get
+        Set(ByVal value As Double)
+            SetPropertyValue("DiscountValue", _discountValue, value)
+            If Not IsLoading Then
+                CalculateDiscount()
+            End If
+        End Set
+    End Property
+    <ImmediatePostData(True)>
+    Public Property Discount As Double
+        Get
+            Return _discount
+        End Get
+        Set(ByVal value As Double)
+            SetPropertyValue("Discount", _discount, value)
+            If Not IsLoading Then
+                CalculateGrandTotal()
+            End If
+        End Set
+    End Property
+    Public Property GrandTotal As Double
+        Get
+            Return _grandTotal
+        End Get
+        Set(ByVal value As Double)
+            SetPropertyValue("GrandTotal", _grandTotal, value)
         End Set
     End Property
     Public Property Salesman As Salesman
@@ -126,6 +179,17 @@ Public Class SalesInvoice
             Return No
         End Get
     End Property
+    Private Sub CalculateDiscount()
+        Select Case DiscountType
+            Case [Module].DiscountType.ByAmount
+                Discount = DiscountValue
+            Case [Module].DiscountType.ByPercentage
+                Discount = Total * DiscountValue / 100
+        End Select
+    End Sub
+    Private Sub CalculateGrandTotal()
+        GrandTotal = Total - Discount
+    End Sub
     <Action(autoCommit:=False, Caption:="Recalculate Outstanding Status", _
     confirmationMessage:="Are you really want to recalculate these transactions' PaymentOutstandingStatus?", _
     selectiondependencytype:=MethodActionSelectionDependencyType.RequireMultipleObjects, _
