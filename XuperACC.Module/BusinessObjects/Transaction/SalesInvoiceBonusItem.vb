@@ -15,7 +15,7 @@ Imports DevExpress.Persistent.Validation
 
 <CreatableItem(False)>
 <RuleCombinationOfPropertiesIsUnique("Rule Combination Unique for SalesInvoiceBonusItem", DefaultContexts.Save, "SalesInvoice, Item")>
-<RuleCriteria("Rule Criteria for SalesInvoiceBonusItem.Quantity > 0", DefaultContexts.Save, "Quantity > 0", "Total must be greater than zero")>
+<RuleCriteria("Rule Criteria for SalesInvoiceBonusItem.Quantity > 0", DefaultContexts.Save, "Quantity > 0", "Quantity must be greater than zero")>
 <DeferredDeletion(False)>
 <DefaultClassOptions()> _
 Public Class SalesInvoiceBonusItem
