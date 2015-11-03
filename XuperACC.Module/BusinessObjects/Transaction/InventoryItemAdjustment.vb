@@ -79,6 +79,9 @@ Public Class InventoryItemAdjustment
         End Get
         Set(ByVal value As Integer)
             SetPropertyValue("Quantity", _quantity, value)
+            If Not IsLoading Then
+                CalculateTotal()
+            End If
         End Set
     End Property
     Public Property UnitPrice As Double
@@ -87,6 +90,9 @@ Public Class InventoryItemAdjustment
         End Get
         Set(ByVal value As Double)
             SetPropertyValue("UnitPrice", _unitPrice, value)
+            If Not IsLoading Then
+                CalculateTotal()
+            End If
         End Set
     End Property
     Public Property Total As Double
@@ -140,4 +146,9 @@ Public Class InventoryItemAdjustment
             InventoryServices.DeleteInventoryItemDeductTransaction(tmp)
         End If
     End Sub
+
+    Private Sub CalculateTotal()
+        Total = Quantity * UnitPrice
+    End Sub
+
 End Class

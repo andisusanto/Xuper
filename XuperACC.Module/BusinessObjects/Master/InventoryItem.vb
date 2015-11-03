@@ -18,7 +18,7 @@ Imports DevExpress.ExpressApp.ConditionalAppearance
 <Appearance("Appearance Default Display for InventoryItem", AppearanceItemType:="ViewItem", targetitems:="*", enabled:=False)>
 <DefaultClassOptions()> _
 Public Class InventoryItem
-    Inherits BaseObject
+    Inherits AppBase
     Public Sub New(ByVal session As Session)
         MyBase.New(session)
     End Sub
@@ -108,6 +108,12 @@ Public Class InventoryItem
             SetPropertyValue("Note", _note, value)
         End Set
     End Property
+    Public Overrides ReadOnly Property DefaultDisplay As String
+        Get
+            Return Inventory.DefaultDisplay & " ~ " & Item.DefaultDisplay & "/" & TransDate.ToString
+        End Get
+    End Property
+
     Private Sub CalculateRemainingQuantity()
         RemainingQuantity = Quantity - DeductedQuantity
     End Sub
@@ -117,4 +123,5 @@ Public Class InventoryItem
             Return GetCollection(Of InventoryItemDeductTransactionDetail)("DeductDetails")
         End Get
     End Property
+
 End Class
